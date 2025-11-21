@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Senandung Timur: Eksplorasi Wisata Jawa Timur</title>
+    <style>
+        body { 
+            font-family: 'Segoe UI', Optima, Cambria; 
+            margin: 0; 
+            padding: 40px; /* Diperbesar dari 30px */
+            background: linear-gradient(135deg, #FFB6C1, #f5576c); 
+            background-size: 400% 400%; /* Untuk animasi gradien */
+            animation: gradientShift 15s ease infinite; /* Animasi gradien bergerak untuk membuat background lebih dinamis tanpa mengubah warna */
+            color: #333; 
+            position: relative; /* Untuk posisi partikel */
+            overflow-x: hidden; /* Hindari scroll horizontal */
+        }
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        /* Partikel animasi untuk membuat background lebih heboh */
+        .particle {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background: rgba(255, 255, 255, 0.7);
+            border-radius: 50%;
+            animation: float 10s linear infinite;
+            pointer-events: none;
+        }
+        .particle:nth-child(odd) {
+            animation-duration: 8s;
+            background: rgba(255, 182, 193, 0.8); /* Warna pink lembut */
+        }
+        .particle:nth-child(even) {
+            animation-duration: 12s;
+            background: rgba(245, 87, 108, 0.6); /* Warna merah muda */
+        }
+        @keyframes float {
+            0% { transform: translateY(100vh) rotate(0deg); opacity: 0; }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { transform: translateY(-100vh) rotate(360deg); opacity: 0; }
+        }
+        /* Ornamen garis bergelombang di sekitar header dan footer */
+        .ornament {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+        .wave {
+            position: absolute;
+            width: 100%;
+            height: 20px;
+            background: repeating-linear-gradient(90deg, rgba(255,255,255,0.3) 0px, rgba(255,255,255,0.3) 10px, transparent 10px, transparent 20px);
+            animation: waveMove 5s linear infinite;
+        }
+        .wave:nth-child(1) { top: 10%; }
+        .wave:nth-child(2) { top: 90%; }
+        @keyframes waveMove {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+        header { 
+            text-align: center; 
+            padding: 30px; /* Diperbesar dari 20px */
+            background: rgba(255, 255, 255, 0.9); 
+            border-radius: 15px; /* Diperbesar dari 10px */
+            margin-bottom: 40px; /* Diperbesar dari 30px */
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1); 
+            animation: fadeInUp 1s ease-out; /* Animasi fade-in untuk header */
+            position: relative;
+            overflow: hidden;
+        }
+        header::before {
+            content: '';
+            position: absolute;
+            top: -10px;
+            left: -10px;
+            right: -10px;
+            bottom: -10px;
+            background: repeating-linear-gradient(45deg, rgba(232, 67, 147, 0.1) 0px, rgba(232, 67, 147, 0.1) 10px, transparent 10px, transparent 20px);
+            border-radius: 20px;
+            animation: rotate 20s linear infinite;
+            z-index: -1;
+        }
+        @keyframes rotate {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        .header-content { 
+            display: flex; 
+            flex-direction: column; /* Diubah untuk menumpuk judul dan keterangan */
+            align-items: center; 
+            justify-content: center; 
+        }
+        .logo { 
+            width: 60px; /* Diperbesar dari 50px */
+            height: 60px; /* Diperbesar dari 50px */
+            margin-right: 15px; 
+            border-radius: 5px; 
+        }
+        h1 { 
+            color: #e84393; 
+            margin: 0 0 10px 0; /* Tambah margin bawah untuk spasi */
+            font-size: 3em; /* Diperbesar dari 2.5em */
+            animation: bounceIn 1.5s ease-out; /* Animasi bounce untuk judul */
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+        @keyframes bounceIn {
+            0% {
+                opacity: 0;
+                transform: scale(0.3);
+            }
+            50% {
+                opacity: 1;
+                transform: scale(1.05);
+            }
+            70% {
+                transform: scale(0.9);
+            }
+            100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+        .header-description { 
+            font-size: 1.2em; /* Ukuran font untuk keterangan */
+            color: #555; 
+            margin: 0; 
+            max-width: 600px; 
+            line-height: 1.5; 
+        }
+        .intro-provinsi { 
+            max-width: 900px; /* Diperbesar dari 800px */
+            margin: 30px auto; /* Diperbesar dari 20px */
+            padding: 30px; /* Diperbesar dari 20px */
+            background: rgba(255, 255, 255, 0.9); 
+            border-radius: 20px; /* Diperbesar dari 15px */
+            box-shadow: 0 6px 12px rgba(0,0,0,0.15); 
+            text-align: left; 
+            animation: slideInLeft 1s ease-out; /* Animasi slide-in untuk intro */
+            position: relative;
+        }
+        .intro-provinsi::after {
+            content: '🌟';
+            position: absolute;
+            top: 10px;
+            right: 20px;
+            font-size: 2em;
+            animation: sparkle 2s ease-in-out infinite alternate;
+        }
+        @keyframes sparkle {
+            0% { transform: scale(1); opacity: 0.5; }
+            100% { transform: scale(1.2); opacity: 1; }
+        }
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        .intro-provinsi h2 { 
+            color: #e84393; 
+            font-size: 2em; /* Diperbesar dari 1.8em */
+            margin-bottom: 20px; /* Diperbesar dari 15px */
+        }
+        .intro-provinsi p { 
+            line-height: 1.6; 
+            color: #555; 
+        }
+        .container { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); /* Diperbesar minmax dari 300px */
+            gap: 30px; /* Diperbesar dari 20px */
+            max-width: 1400px; /* Diperbesar dari 1200px */
+            margin: 0 auto; 
+        }
+        .daerah { 
+            background: white; 
+            padding: 30px; /* Diperbesar dari 20px */
+            border-radius: 20px; /* Diperbesar dari 15px */
+            box-shadow: 0 6px 12px rgba(0,0,0,0.15); 
+            transition: transform 0.3s ease, box-shadow 0.3s ease; 
+            overflow: hidden; 
+            animation: fadeIn 1s ease-out; /* Animasi fade-in untuk setiap daerah */
+            animation-fill-mode: both; /* Agar animasi tetap */
+            position: relative;
+        }
+        .daerah::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: linear-gradient(90deg, #e84393, #FFB6C1);
+            animation: shimmer 3s ease-in-out infinite;
+        }
+        @keyframes shimmer {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+        .daerah:nth-child(1) { animation-delay: 0.2s; }
+        .daerah:nth-child(2) { animation-delay: 0.4s; }
+        .daerah:nth-child(3) { animation-delay: 0.6s; }
+        .daerah:nth-child(4) { animation-delay: 0.8s; }
+        .daerah:nth-child(5) { animation-delay: 1s; }
+        .daerah:nth-child(6) { animation-delay: 1.2s; }
+        .daerah:nth-child(7) { animation-delay: 1.4s; }
+        .daerah:nth-child(8) { animation-delay: 1.6s; }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        .daerah:hover { 
+            transform: translateY(-5px); 
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2); 
+        }
+        .daerah h2 { 
+            color: #e84393; 
+            margin-top: 0; 
+            font-size: 1.8em; /* Diperbesar dari 1.5em */
+        }
+        .daerah img { 
+            width: 100%; 
+            height: 250px; /* Diperbesar dari 200px */
+            object-fit: cover; 
+            border-radius: 15px; /* Diperbesar dari 10px */
+            margin-bottom: 20px; /* Diperbesar dari 15px */
+            transition: transform 0.3s ease; /* Tambah animasi hover untuk gambar */
+        }
+        .daerah img:hover {
+            transform: scale(1.05); /* Zoom in pada hover gambar */
+        }
+        .daerah p { 
+            line-height: 1.6; 
+            color: #555; 
+        }
+        .detail-btn { 
+            background: #e84393; 
+            color: white; 
+            border: none; 
+            padding: 12px 18px; /* Diperbesar dari 10px 15px */
+            border-radius: 8px; /* Diperbesar dari 5px */
+            cursor: pointer; 
+            font-size: 1.1em; /* Diperbesar dari 1em */
+            transition: background 0.3s, transform 0.2s; /* Tambah transform untuk efek klik */
+            position: relative;
+            overflow: hidden;
+        }
+        .detail-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            transition: left 0.5s;
+        }
+        .detail-btn:hover::before {
+            left: 100%;
+        }
+        .detail-btn:hover { 
+            background: #c44569; 
+            transform: scale(1.05); /* Sedikit membesar pada hover */
+        }
+        .detail-btn:active {
+            transform: scale(0.95); /* Efek tekan */
+        }
+        .detail { 
+            display: none; 
+            margin-top: 20px; /* Diperbesar dari 15px */
+            padding: 20px; /* Diperbesar dari 15px */
+            background: #f9f9f9; 
+            border-radius: 15px; /* Diperbesar dari 10px */
+            border-left: 5px solid #e84393; 
+            animation: slideDown 0.5s ease-out; /* Animasi slide down saat muncul */
+        }
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                max-height: 0;
+            }
+            to {
+                opacity: 1;
+                max-height: 500px; /* Sesuaikan dengan konten */
+            }
+        }
+        .detail h3 { 
+            color: #2c3e50; 
+            margin-bottom: 15px; /* Diperbesar dari 10px */
+        }
+        .detail ul { 
+            margin: 0; 
+            padding-left: 25px; /* Diperbesar dari 20px */
+        }
+        footer { 
+            text-align: center; 
+            margin-top: 50px; /* Diperbesar dari 40px */
+            padding: 30px; /* Diperbesar dari 20px */
+            background: rgba(255, 255, 255, 0.9); 
+            border-radius: 15px; /* Diperbesar dari 10px */
+            color: #7f8c8d; 
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1); 
+            animation: fadeInUp 1s ease-out; /* Animasi fade-in untuk footer */
+            animation-delay: 2s; /* Delay agar muncul setelah elemen lain */
+            position: relative;
+        }
+        footer::before {
+            content: '';
+            position: absolute;
+            top: -10px;
+            left: -10px;
+            right: -10px;
+            bottom: -10px;
+            background: repeating-linear-gradient(45deg, rgba(232, 67, 147, 0.1) 0px, rgba(232, 67, 147, 0.1) 10px, transparent 10px, transparent 20px);
+            border-radius: 20px;
+            animation: rotate 20s linear infinite reverse;
+            z-index: -1;
+        }
+    </style>
+    <script>
+        function toggleDetail(id) {
+            const detail = document.getElementById(id);
+            if (detail.style.display === 'block') {
+                detail.style.display = 'none';
+            } else {
+                detail.style.display = 'block';
+            }
+        }
+        // Tambah animasi scroll untuk elemen yang muncul saat scroll
+        window.addEventListener('scroll', function() {
+            const elements = document.querySelectorAll('.daerah');
+            const scrollTop = window.pageYOffset;
+            elements.forEach((el, index) => {
+                if (el.offsetTop < scrollTop + window.innerHeight - 100) {
+                    el.style.animationPlayState = 'running';
+                }
+            });
+        });
+        // Fungsi untuk membuat partikel
+        function createParticles() {
+            const body = document.body;
+            for (let i = 0; i < 20; i++) { // Jumlah partikel
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.animationDelay = Math.random() * 10 + 's';
+                body.appendChild(particle);
+            }
+        }
+        // Panggil fungsi saat halaman load
+        window.addEventListener('load', createParticles);
+    </script>
+</head>
+<body>
+    <div class="ornament">
+        <div class="wave"></div>
+        <div class="wave"></div>
+    </div>
+    <header>
+        <div class="header-content">
+            <h1>Senandung Timur: Eksplorasi Wisata Jawa Timur</h1>
+            <p class="header-description">Jelajahi keindahan, kuliner, dan budaya dari berbagai daerah di Jawa Timur. Dari pantai hingga gunung, temukan pesona Timur yang tak terlupakan!</p>
+        </div>
+    </header>
+
+    <div class="intro-provinsi">
+        <h2>Apa itu Provinsi Jawa Timur?</h2>
+        <p>Jawa Timur adalah salah satu provinsi terbesar di Indonesia, terletak di bagian timur Pulau Jawa. Provinsi ini memiliki luas wilayah sekitar 47.800 km² dan populasi lebih dari 40 juta jiwa. Jawa Timur dikenal dengan keberagaman budaya, sejarah yang kaya, dan destinasi wisata alam yang spektakuler.</p>
+        <p>Provinsi ini berbatasan dengan Laut Jawa di utara, Samudra Hindia di selatan, serta provinsi Jawa Tengah dan Daerah Istimewa Yogyakarta di barat. Kota-kota besar seperti Surabaya (ibu kota provinsi), Malang, dan Kediri menjadi pusat ekonomi dan budaya. Jawa Timur juga terkenal dengan kuliner khas seperti rawon, sate Madura, dan soto Lamongan, serta kesenian tradisional seperti reog Ponorogo dan karapan sapi Madura.</p>
+        <p>Destinasi wisata utama meliputi gunung-gunung seperti Bromo dan Semeru, pantai-pantai indah di selatan, serta situs
